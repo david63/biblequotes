@@ -1,6 +1,6 @@
-# Credits Page extension for phpBB
+# Bible Quotes extension for phpBB
 
-Adds a bible quotes feature.
+Adds a bible quotes feature to phpBB using Bible Gateway.
 
 [![Build Status](https://travis-ci.com/david63/biblequotes.svg?branch=master)](https://travis-ci.com/david63/biblequotes)
 [![License](https://poser.pugx.org/david63/biblequotes/license)](https://packagist.org/packages/david63/biblequotes)
