@@ -7,6 +7,7 @@ Adds a bible quotes feature to phpBB using Bible Gateway.
 [![Latest Stable Version](https://poser.pugx.org/david63/biblequotes/v/stable)](https://packagist.org/packages/david63/biblequotes)
 [![Latest Unstable Version](https://poser.pugx.org/david63/biblequotes/v/unstable)](https://packagist.org/packages/david63/biblequotes)
 [![Total Downloads](https://poser.pugx.org/david63/biblequotes/downloads)](https://packagist.org/packages/david63/biblequotes)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/95919ea30b0043db9a3a158956d83e2b)](https://www.codacy.com/manual/david63/biblequotes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=david63/biblequotes&amp;utm_campaign=Badge_Grade)
 
 ## Minimum Requirements
 * phpBB 3.2.0

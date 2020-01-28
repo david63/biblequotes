@@ -20,7 +20,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 
-/// DEVELOPERS PLEASE NOTE
+// DEVELOPERS PLEASE NOTE
 //
 // All language files should use UTF-8 as their encoding and the files must not contain a BOM.
 //
@@ -36,18 +36,19 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-$lang = array_merge($lang, array(
-	'BIBLE_QUOTES'					=> 'Bible quotes',
-	'BIBLE_QUOTES_MANAGE_EXPLAIN'	=> 'Select here the options that are required for the displaying of bible quotes in posts.<br>This extension is using the quotes from the <a href="https://www.biblegateway.com/">Bible Gateway</a>',
-	'BQ_APOCRYPHA'					=> 'Apocrypha',
-	'BQ_APOCRYPHA_EXPLAIN'			=> 'Set to “Yes” to find references to books in the Apocrypha.',
-	'BQ_TOOLTIP_CLICK'				=> 'Tooltip click',
-	'BQ_TOOLTIP_CLICK_EXPLAIN'		=> 'Set to “Yes” to show the tooltip when clicking the link rather than when hovering over it.',
-	'BQ_TOOLTIP_SHOW'				=> 'Tooltip show',
-	'BQ_TOOLTIP_SHOW_EXPLAIN'		=> 'Set to “No” to add links to Bible Gateway without any tooltip functionality.',
-	'BQ_VERSION'					=> 'Bible version',
-	'BQ_VERSION_EXPLAIN'			=> 'Select the bible version that is required.',
 
-	'EN'							=> 'English',
-	'ES'							=> 'Spanish',
+$lang = array_merge($lang, array(
+	'DONATE'					=> 'Donate',
+	'DONATE_EXTENSIONS'			=> 'Donate to my extensions',
+	'DONATE_EXTENSIONS_EXPLAIN'	=> 'This extension, as with all of my extensions, is totally free of charge. If you have benefited from using it then please consider making a donation by clicking the PayPal donation button opposite - I would appreciate it. I promise that there will be no spam nor requests for further donations, although they would always be welcome.',
+
+	'NEW_VERSION'				=> 'New Version - %s',
+	'NEW_VERSION_EXPLAIN'		=> 'Version %1$s of this extension is now available for download.<br>%2$s',
+	'NEW_VERSION_LINK'			=> 'Download here',
+	'NO_VERSION_EXPLAIN'		=> 'Version update information is not available.',
+
+	'PAYPAL_BUTTON'				=> 'Donate with PayPal button',
+	'PAYPAL_TITLE'				=> 'PayPal - The safer, easier way to pay online!',
+
+	'VERSION'					=> 'Version',
 ));

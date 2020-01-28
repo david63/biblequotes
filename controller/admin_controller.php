@@ -81,6 +81,7 @@ class admin_controller implements admin_interface
 	{
 		// Add the language files
 		$this->language->add_lang('acp_biblequotes', $this->functions->get_ext_namespace());
+		$this->language->add_lang('acp_common', $this->functions->get_ext_namespace());
 		$this->language->add_lang('bible_versions', $this->functions->get_ext_namespace());
 
 		// Create a form key for preventing CSRF attacks
@@ -119,16 +120,20 @@ class admin_controller implements admin_interface
 		$bible_version_opts = '<select name="bq_version" id="bq_version">' . $bible_version_options . '</select>';
 
 		// Template vars for header panel
+		$version_data	= $this->functions->version_check();
+
 		$this->template->assign_vars(array(
+			'DOWNLOAD'			=> (array_key_exists('download', $version_data)) ? '<a class="download" href =' . $version_data['download'] . '>' . $this->language->lang('NEW_VERSION_LINK') . '</a>' : '',
+
 			'HEAD_TITLE'		=> $this->language->lang('BIBLE_QUOTES'),
 			'HEAD_DESCRIPTION'	=> $this->language->lang('BIBLE_QUOTES_MANAGE_EXPLAIN'),
 
 			'NAMESPACE'			=> $this->functions->get_ext_namespace('twig'),
 
 			'S_BACK'			=> $back,
-			'S_VERSION_CHECK'	=> $this->functions->version_check(),
+			'S_VERSION_CHECK'	=> (array_key_exists('current', $version_data)) ? $version_data['current'] : false,
 
-			'VERSION_NUMBER'	=> $this->functions->get_this_version(),
+			'VERSION_NUMBER'	=> $this->functions->get_meta('version'),
 		));
 
 		$this->template->assign_vars(array(
