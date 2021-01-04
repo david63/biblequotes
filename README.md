@@ -10,12 +10,11 @@ Adds a bible quotes feature to phpBB using Bible Gateway.
 [![codecov](https://codecov.io/gh/david63/biblequotes/branch/master/graph/badge.svg?token=D2500PgRex)](https://codecov.io/gh/david63/biblequotes)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/95919ea30b0043db9a3a158956d83e2b)](https://www.codacy.com/manual/david63/biblequotes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=david63/biblequotes&amp;utm_campaign=Badge_Grade)
 
- [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.2.x-blue.svg)](https://shields.io/)
- [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
+[![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
 
 ## Minimum Requirements
-* phpBB 3.2.0
-* PHP 5.4
+* phpBB 3.3.0
+* PHP 7.1.3
 
 ## Install
 1. [Download the latest release](https://github.com/david63/biblequotes/archive/3.2.zip) and unzip it.

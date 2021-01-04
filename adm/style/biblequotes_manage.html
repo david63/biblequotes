@@ -1,55 +1,57 @@
 {% include '@' ~ NAMESPACE ~ '/head_panel.html' %}
 
-<form id="biblequotes_manage" method="post" action="{{ U_ACTION }}">
-	<fieldset>
-		<legend>{{ lang('OPTIONS') }}</legend>
+{% if PHP_VALID and PHPBB_VALID %}
+	<form id="biblequotes_manage" method="post" action="{{ U_ACTION }}">
+		<fieldset>
+			<legend>{{ lang('OPTIONS') }}</legend>
 
-		<dl>
-			<dt><label for="cp_items_page">{{ lang('BQ_VERSION') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_VERSION_EXPLAIN') }}</span></dt>
-			<dd>
-				{{ BQ_VERSION }}
-			</dd>
-		</dl>
+			<dl>
+				<dt><label for="cp_items_page">{{ lang('BQ_VERSION') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_VERSION_EXPLAIN') }}</span></dt>
+				<dd>
+					{{ BQ_VERSION }}
+				</dd>
+			</dl>
 
-		<dl>
-			<dt><label for="bq_apocrypha">{{ lang('BQ_APOCRYPHA') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_APOCRYPHA_EXPLAIN') }}</span></dt>
-			<dd>
-				<input type="radio" id="bq_apocrypha1" name="bq_apocrypha" value="1"{% if BQ_APOCRYPHA %} checked="checked"{% endif %} />
-				<label class="set" for="bq_apocrypha1">{{ lang('YES') }}</label>
-				<input type="radio" id="bq_apocrypha0" name="bq_apocrypha" value="0"{% if not BQ_APOCRYPHA %} checked="checked"{% endif %} />
-				<label class="unset" for="bq_apocrypha0">{{ lang('NO') }}</label>
-			</dd>
-		</dl>
+			<dl>
+				<dt><label for="bq_apocrypha">{{ lang('BQ_APOCRYPHA') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_APOCRYPHA_EXPLAIN') }}</span></dt>
+				<dd>
+					<input type="radio" id="bq_apocrypha1" name="bq_apocrypha" value="1"{% if BQ_APOCRYPHA %} checked="checked"{% endif %} />
+					<label class="set" for="bq_apocrypha1">{{ lang('YES') }}</label>
+					<input type="radio" id="bq_apocrypha0" name="bq_apocrypha" value="0"{% if not BQ_APOCRYPHA %} checked="checked"{% endif %} />
+					<label class="unset" for="bq_apocrypha0">{{ lang('NO') }}</label>
+				</dd>
+			</dl>
 
-		<dl>
-			<dt><label for="bq_click_tooltip">{{ lang('BQ_TOOLTIP_CLICK') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_TOOLTIP_CLICK_EXPLAIN') }}</span></dt>
-			<dd>
-				<input type="radio" id="bq_click_tooltip1" name="bq_click_tooltip" value="1"{% if BQ_TOOLTIP_CLICK %} checked="checked"{% endif %} />
-				<label class="set" for="bq_click_tooltip1">{{ lang('YES') }}</label>
-				<input type="radio" id="bq_click_tooltip0" name="bq_click_tooltip" value="0"{% if not BQ_TOOLTIP_CLICK %} checked="checked"{% endif %} />
-				<label class="unset" for="bq_click_tooltip0">{{ lang('NO') }}</label>
-			</dd>
-		</dl>
+			<dl>
+				<dt><label for="bq_click_tooltip">{{ lang('BQ_TOOLTIP_CLICK') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_TOOLTIP_CLICK_EXPLAIN') }}</span></dt>
+				<dd>
+					<input type="radio" id="bq_click_tooltip1" name="bq_click_tooltip" value="1"{% if BQ_TOOLTIP_CLICK %} checked="checked"{% endif %} />
+					<label class="set" for="bq_click_tooltip1">{{ lang('YES') }}</label>
+					<input type="radio" id="bq_click_tooltip0" name="bq_click_tooltip" value="0"{% if not BQ_TOOLTIP_CLICK %} checked="checked"{% endif %} />
+					<label class="unset" for="bq_click_tooltip0">{{ lang('NO') }}</label>
+				</dd>
+			</dl>
 
-		<dl>
-			<dt><label for="bq_show_tooltips">{{ lang('BQ_TOOLTIP_SHOW') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_TOOLTIP_SHOW_EXPLAIN') }}</span></dt>
-			<dd>
-				<input type="radio" id="bq_show_tooltips1" name="bq_show_tooltips" value="1"{% if BQ_TOOLTIP_SHOW %} checked="checked"{% endif %} />
-				<label class="set" for="bq_show_tooltips1">{{ lang('YES') }}</label>
-				<input type="radio" id="bq_show_tooltips0" name="bq_show_tooltips" value="0"{% if not BQ_TOOLTIP_SHOW %} checked="checked"{% endif %} />
-				<label class="unset" for="bq_show_tooltips0">{{ lang('NO') }}</label>
-			</dd>
-		</dl>
-	</fieldset>
+			<dl>
+				<dt><label for="bq_show_tooltips">{{ lang('BQ_TOOLTIP_SHOW') }}{{ lang('COLON') }}</label><br><span>{{ lang('BQ_TOOLTIP_SHOW_EXPLAIN') }}</span></dt>
+				<dd>
+					<input type="radio" id="bq_show_tooltips1" name="bq_show_tooltips" value="1"{% if BQ_TOOLTIP_SHOW %} checked="checked"{% endif %} />
+					<label class="set" for="bq_show_tooltips1">{{ lang('YES') }}</label>
+					<input type="radio" id="bq_show_tooltips0" name="bq_show_tooltips" value="0"{% if not BQ_TOOLTIP_SHOW %} checked="checked"{% endif %} />
+					<label class="unset" for="bq_show_tooltips0">{{ lang('NO') }}</label>
+				</dd>
+			</dl>
+		</fieldset>
 
-	<fieldset>
-		<legend>{{ lang('ACP_SUBMIT_CHANGES') }}</legend>
-		<p class="submit-buttons">
-			<input class="adm-button" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
-			<input class="adm-button" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
-		</p>
-		{{ S_FORM_TOKEN }}
-	</fieldset>
-</form>
+		<fieldset>
+			<legend>{{ lang('SAVE_CHANGES') }}</legend>
+			<p class="submit-buttons">
+				<input class="adm-button" type="submit" id="submit" name="submit" value="{{ lang('SAVE') }}" />&nbsp;
+				<input class="adm-button" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+			</p>
+			{{ S_FORM_TOKEN }}
+		</fieldset>
+	</form>
 
-{% include '@' ~ NAMESPACE ~ '/donate.html' %}
+	{% include '@' ~ NAMESPACE ~ '/donate.html' %}
+{% endif %}

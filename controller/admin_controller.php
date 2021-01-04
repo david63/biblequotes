@@ -1,11 +1,11 @@
 <?php
 /**
-*
-* @package Bible Quotes Extension
-* @copyright (c) 2019 david63
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * @package Bible Quotes Extension
+ * @copyright (c) 2019 david63
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace david63\biblequotes\controller;
 
@@ -18,9 +18,9 @@ use phpbb\log\log;
 use david63\biblequotes\core\functions;
 
 /**
-* Admin controller
-*/
-class admin_controller implements admin_interface
+ * Admin controller
+ */
+class admin_controller
 {
 	/** @var \phpbb\config\config */
 	protected $config;
@@ -43,44 +43,49 @@ class admin_controller implements admin_interface
 	/** @var \david63\creditspage\core\functions */
 	protected $functions;
 
+	/** @var string */
+	protected $ext_images_path;
+
 	/** @var string Custom form action */
 	protected $u_action;
 
 	/**
-	* Constructor for admin controller
-	*
-	* @param \phpbb\config\config					$config			Config object
-	* @param \phpbb\request\request					$request		Request object
-	* @param \phpbb\template\template				$template		Template object
-	* @param \phpbb\user							$user			User object
-	* @param \phpbb\language\language				$language		Language object
-	* @param \phpbb\log\log							$log			Log object
-	* @param \david63\biblequotes\core\functions	$functions		Functions for the extension
-	*
-	* @return \david63\biblequotes\controller\admin_controller
-	* @access public
-	*/
-	public function __construct(config $config, request $request, template $template, user $user, language $language, log $log, functions $functions)
+	 * Constructor for admin controller
+	 *
+	 * @param \phpbb\config\config                   $config         	Config object
+	 * @param \phpbb\request\request                 $request        	Request object
+	 * @param \phpbb\template\template               $template       	Template object
+	 * @param \phpbb\user                            $user           	User object
+	 * @param \phpbb\language\language               $language       	Language object
+	 * @param \phpbb\log\log                         $log            	Log object
+	 * @param \david63\biblequotes\core\functions    $functions      	Functions for the extension
+	 * @param string                                 $ext_images_path    Path to this extension's images
+	 *
+	 * @return \david63\biblequotes\controller\admin_controller
+	 * @access public
+	 */
+	public function __construct(config $config, request $request, template $template, user $user, language $language, log $log, functions $functions, string $ext_images_path)
 	{
-		$this->config		= $config;
-		$this->request		= $request;
-		$this->template		= $template;
-		$this->user			= $user;
-		$this->language		= $language;
-		$this->log			= $log;
-		$this->functions	= $functions;
+		$this->config    		= $config;
+		$this->request   		= $request;
+		$this->template  		= $template;
+		$this->user      		= $user;
+		$this->language  		= $language;
+		$this->log       		= $log;
+		$this->functions		= $functions;
+		$this->ext_images_path	= $ext_images_path;
 	}
 
 	/**
-	* Display the options a user can configure for this extension
-	*
-	* @return null
-	* @access public
-	*/
+	 * Display the options a user can configure for this extension
+	 *
+	 * @return null
+	 * @access public
+	 */
 	public function display_options()
 	{
 		// Add the language files
-		$this->language->add_lang(array('acp_biblequotes', 'acp_common', 'bible_versions'), $this->functions->get_ext_namespace());
+		$this->language->add_lang(['acp_biblequotes', 'acp_common', 'bible_versions'], $this->functions->get_ext_namespace());
 
 		// Create a form key for preventing CSRF attacks
 		add_form_key('biblequotes');
@@ -118,38 +123,46 @@ class admin_controller implements admin_interface
 		$bible_version_opts = '<select name="bq_version" id="bq_version">' . $bible_version_options . '</select>';
 
 		// Template vars for header panel
-		$version_data	= $this->functions->version_check();
+		$version_data = $this->functions->version_check();
 
-		$this->template->assign_vars(array(
-			'DOWNLOAD'			=> (array_key_exists('download', $version_data)) ? '<a class="download" href =' . $version_data['download'] . '>' . $this->language->lang('NEW_VERSION_LINK') . '</a>' : '',
+		// Are the PHP and phpBB versions valid for this extension?
+		$valid = $this->functions->ext_requirements();
 
-			'HEAD_TITLE'		=> $this->language->lang('BIBLE_QUOTES'),
+		$this->template->assign_vars([
+			'DOWNLOAD' 			=> (array_key_exists('download', $version_data)) ? '<a class="download" href =' . $version_data['download'] . '>' . $this->language->lang('NEW_VERSION_LINK') . '</a>' : '',
+
+ 			'EXT_IMAGE_PATH'	=> $this->ext_images_path,
+
+			'HEAD_TITLE' 		=> $this->language->lang('BIBLE_QUOTES'),
 			'HEAD_DESCRIPTION'	=> $this->language->lang('BIBLE_QUOTES_MANAGE_EXPLAIN'),
 
-			'NAMESPACE'			=> $this->functions->get_ext_namespace('twig'),
+			'NAMESPACE' 		=> $this->functions->get_ext_namespace('twig'),
 
-			'S_BACK'			=> $back,
-			'S_VERSION_CHECK'	=> (array_key_exists('current', $version_data)) ? $version_data['current'] : false,
+			'PHP_VALID' 		=> $valid[0],
+			'PHPBB_VALID' 		=> $valid[1],
 
-			'VERSION_NUMBER'	=> $this->functions->get_meta('version'),
-		));
+			'S_BACK' 			=> $back,
+			'S_VERSION_CHECK' 	=> (array_key_exists('current', $version_data)) ? $version_data['current'] : false,
 
-		$this->template->assign_vars(array(
-			'BQ_APOCRYPHA'		=> isset($this->config['bq_apocrypha']) ? $this->config['bq_apocrypha'] : '',
+			'VERSION_NUMBER' 	=> $this->functions->get_meta('version'),
+		]);
+
+		$this->template->assign_vars([
+			'BQ_APOCRYPHA' 		=> isset($this->config['bq_apocrypha']) ? $this->config['bq_apocrypha'] : '',
 			'BQ_TOOLTIP_CLICK'	=> isset($this->config['bq_click_tooltip']) ? $this->config['bq_click_tooltip'] : '',
-			'BQ_TOOLTIP_SHOW'	=> isset($this->config['bq_show_tooltips']) ? $this->config['bq_show_tooltips'] : '',
-			'BQ_VERSION'		=> $bible_version_opts,
+			'BQ_TOOLTIP_SHOW' 	=> isset($this->config['bq_show_tooltips']) ? $this->config['bq_show_tooltips'] : '',
+			'BQ_VERSION' 		=> $bible_version_opts,
 
-			'U_ACTION'			=> $this->u_action,
-		));
+			'U_ACTION' 			=> $this->u_action,
+		]);
 	}
 
 	/**
-	* Set the options a user can configure
-	*
-	* @return null
-	* @access protected
-	*/
+	 * Set the options a user can configure
+	 *
+	 * @return null
+	 * @access protected
+	 */
 	protected function set_manage_options()
 	{
 		$this->config->set('bq_apocrypha', $this->request->variable('bq_apocrypha', 0));
@@ -159,12 +172,12 @@ class admin_controller implements admin_interface
 	}
 
 	/**
-	* Set page url
-	*
-	* @param string $u_action Custom form action
-	* @return null
-	* @access public
-	*/
+	 * Set page url
+	 *
+	 * @param string $u_action Custom form action
+	 * @return null
+	 * @access public
+	 */
 	public function set_page_url($u_action)
 	{
 		return $this->u_action = $u_action;
