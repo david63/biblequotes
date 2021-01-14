@@ -22,25 +22,25 @@ use david63\biblequotes\core\functions;
  */
 class admin_controller
 {
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\request\request */
+	/** @var request */
 	protected $request;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
-	/** @var \phpbb\language\language */
+	/** @var language */
 	protected $language;
 
-	/** @var \phpbb\log\log */
+	/** @var log */
 	protected $log;
 
-	/** @var \david63\creditspage\core\functions */
+	/** @var functions */
 	protected $functions;
 
 	/** @var string */
@@ -52,14 +52,14 @@ class admin_controller
 	/**
 	 * Constructor for admin controller
 	 *
-	 * @param \phpbb\config\config                   $config         	Config object
-	 * @param \phpbb\request\request                 $request        	Request object
-	 * @param \phpbb\template\template               $template       	Template object
-	 * @param \phpbb\user                            $user           	User object
-	 * @param \phpbb\language\language               $language       	Language object
-	 * @param \phpbb\log\log                         $log            	Log object
-	 * @param \david63\biblequotes\core\functions    $functions      	Functions for the extension
-	 * @param string                                 $ext_images_path    Path to this extension's images
+	 * @param config		$config         	Config object
+	 * @param request		$request        	Request object
+	 * @param template		$template       	Template object
+	 * @param user			$user           	User object
+	 * @param language		$language       	Language object
+	 * @param log			$log            	Log object
+	 * @param functions		$functions      	Functions for the extension
+	 * @param string		$ext_images_path    Path to this extension's images
 	 *
 	 * @return \david63\biblequotes\controller\admin_controller
 	 * @access public
@@ -131,7 +131,7 @@ class admin_controller
 		$this->template->assign_vars([
 			'DOWNLOAD' 			=> (array_key_exists('download', $version_data)) ? '<a class="download" href =' . $version_data['download'] . '>' . $this->language->lang('NEW_VERSION_LINK') . '</a>' : '',
 
- 			'EXT_IMAGE_PATH'	=> $this->ext_images_path,
+			'EXT_IMAGE_PATH'	=> $this->ext_images_path,
 
 			'HEAD_TITLE' 		=> $this->language->lang('BIBLE_QUOTES'),
 			'HEAD_DESCRIPTION'	=> $this->language->lang('BIBLE_QUOTES_MANAGE_EXPLAIN'),

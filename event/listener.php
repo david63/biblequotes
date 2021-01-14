@@ -22,17 +22,17 @@ use phpbb\template\template;
  */
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
 	/**
 	 * Constructor for listener
 	 *
-	 * @param \phpbb\config\config       $config     Config object
-	 * @param \phpbb\template\template   $template   Template object
+	 * @param config		$config     Config object
+	 * @param template		$template   Template object
 	 *
 	 * @return \david63\biblequotes\event\listener
 	 * @access public
